@@ -14,8 +14,9 @@ RUN rm -rf /etc/apt/sources.list.d/* && apt-get clean && apt-get update && \
     rm -rf /etc/apt/sources.list.d/* 
 
 # Download and install Mellanox OFED 5.0-1.0.0.0 for Ubuntu 16.04
-RUN wget http://content.mellanox.com/ofed/MLNX_OFED-5.0-1.0.0.0/MLNX_OFED_LINUX-5.0-1.0.0.0-ubuntu16.04-x86_64.tgz && \
-    tar -xzvf MLNX_OFED_LINUX-5.0-1.0.0.0-ubuntu16.04-x86_64.tgz && \
+#RUN wget http://content.mellanox.com/ofed/MLNX_OFED-5.0-1.0.0.0/MLNX_OFED_LINUX-5.0-1.0.0.0-ubuntu16.04-x86_64.tgz && \
+COPY ./MLNX_OFED_LINUX-5.0-1.0.0.0-ubuntu16.04-x86_64.tgz /root
+RUN cd /root && tar -xzvf MLNX_OFED_LINUX-5.0-1.0.0.0-ubuntu16.04-x86_64.tgz && \
     MLNX_OFED_LINUX-5.0-1.0.0.0-ubuntu16.04-x86_64/mlnxofedinstall --user-space-only --without-fw-update --all -q && \
     cd .. && \
     rm -rf ${MOFED_DIR} && \
